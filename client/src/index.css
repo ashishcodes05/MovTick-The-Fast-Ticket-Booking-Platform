@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --color-background: #0F0F1A;       /* Deep Black-Blue */
+  --color-primary: #E50914;          /* Vibrant Red */
+  --color-accent: #FFD369;           /* Warm Gold */
+  --color-glow: #00FFF7;             /* Neon Cyan */
+
+  /* 🧾 Text Colors */
+  --color-text-main: #FFFFFF;        /* Pure White */
+  --color-text-secondary: #B0B3BA;   /* Light Gray */
+
+  /* 📦 UI Elements */
+  --color-card-bg: #1E1E2F;          /* Soft Dark Slate */
+  --color-button-bg: var(--color-primary);
+  --color-button-hover: #ff1f2a;     /* Slightly lighter red for hover */
+
+  /* 🌈 Additional Utilities */
+  --color-border-muted: #2C2C3A;
+  --color-shadow-glow: 0 0 12px var(--color-glow);
+}
+
+*{
+  font-family: "Outfit", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-accent) transparent;
+}
+
+body {
+  background: radial-gradient(circle at top left, #1E1E2F, #0F0F1A 70%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-main);
+}
