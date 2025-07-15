@@ -15,11 +15,11 @@ const Navbar = () => {
   };
   return (
     <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-5 transition-all duration-300">
-      <NavLink to="/" className="text-lg font-semibold">
+      <NavLink to="/" className="text-lg flex-1/3 font-semibold">
         <img src={assets.movTickLogo} alt="" className="w-36 h-auto" />
       </NavLink>
       <div
-        className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:h-screen max-md:text-2xl max-md:bg-white/10 backdrop-blur z-50 flex flex-col md:flex-row justify-center md:bg-white/10 md:py-4 md:px-8 md:rounded-full border md:border-gray-300 items-center gap-8 md:gap-6 text-md font-semibold text-shadow-white transition-all duration-300 ${
+        className={`max-md:absolute flex-1/3 max-md:top-0 max-md:left-0 max-md:h-screen max-md:text-2xl max-md:bg-white/10 backdrop-blur z-50 flex flex-col md:flex-row justify-center md:bg-white/10 md:py-2 md:px-8 md:rounded-full border md:border-gray-300 items-center gap-8 md:gap-6 text-md font-semibold text-shadow-white transition-all duration-300 ${
           isOpen
             ? "max-md:w-full"
             : "max-md:w-0 max-md:overflow-hidden max-md:invisible"
@@ -70,7 +70,7 @@ const Navbar = () => {
           Favourites
         </NavLink>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-1/3 justify-end items-center gap-4">
         {!user ? (
           <button
             onClick={openSignIn}

@@ -11,6 +11,7 @@ import {
 import TimeConverter from "../lib/TimeConverter";
 import dayjs from "dayjs";
 import SelectDate from "../Components/SelectDate";
+import Loader from "../Components/Loader";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const MovieDetails = () => {
 
   window.scrollTo(0, 0);
 
-  if (!show) return;
+  if (!show) return <Loader />;
   return (
     <div>
       <div className="w-full h-screen relative">
@@ -64,7 +65,7 @@ const MovieDetails = () => {
               <p className="text-md text-accent flex items-center gap-2 mt-2">
                 <Star className="w-6 h-6 text-accent fill-accent" />
                 <span className="ml-1">
-                  {show.vote_average.toFixed(1)}/10 Ratings
+                  {show.vote_average.toFixed(1)} / 10 Ratings
                 </span>
               </p>
               <p className="text-sm">
@@ -78,10 +79,10 @@ const MovieDetails = () => {
                   <ClapperboardIcon className="w-4 h-4 mr-1" />
                   <span>Watch Trailer</span>
                 </a>
-                <a href="#bookTickets" className="flex gap-1 items-center bg-primary text-white px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
+                <button onClick={() => navigate(`/booking/${show._id}`)} className="flex gap-1 items-center bg-primary text-white px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
                   <LucideTickets className="w-4 h-4 mr-1" />
                   <span>Book Tickets</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -112,7 +113,7 @@ const MovieDetails = () => {
           )}
         </div>
       </div>
-      <SelectDate dateTime={show.dateTime} id={show._id} />
+      
       <div className="px-6 md:px-16 lg:px-36 py-5" id="trailer">
         <div className="flex items-center justify-between ">
           <h2 className="text-2xl font-bold">Trailer</h2>

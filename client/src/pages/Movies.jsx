@@ -4,7 +4,7 @@ import MovieCard from "../Components/MovieCard";
 
 const Movies = () => {
   const [stopScroll, setStopScroll] = React.useState(false);
-
+  window.scrollTo(0, 0);
   return (
     <>
       <style>{`
@@ -21,10 +21,13 @@ const Movies = () => {
                         transform: translateX(-50%);
                     }
                 }
-            `}</style>
-
+            `}
+      </style>
+        <div className="px-6 md:px-16 lg:px-36 pt-10">
+          <p className="text-2xl font-semibold mt-20">Now Showing</p>
+        </div>
       <div
-        className="overflow-hidden w-full relative max-w-6xl mx-auto mt-32 mb-10"
+        className="overflow-hidden w-full relative max-w-6xl mx-auto mt-8 mb-10"
         onMouseEnter={() => setStopScroll(true)}
         onMouseLeave={() => setStopScroll(false)}
       >
@@ -59,9 +62,9 @@ const Movies = () => {
       </div>
       <div className="py-10">
         <div className="flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-          <h2 className="text-2xl font-bold">Now Showing</h2>
+          <h2 className="text-2xl font-bold">Book Your Tickets Now </h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8 px-6 md:px-16 lg:px-36">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 gap-y-8 px-6 md:px-16 lg:px-36">
           {dummyShowsData.map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}

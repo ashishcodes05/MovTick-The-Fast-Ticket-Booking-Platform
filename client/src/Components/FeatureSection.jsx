@@ -18,7 +18,7 @@ const FeatureSection = () => {
             View All <ArrowRightIcon />
           </button>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-6 md:px-16 lg:px-36">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 px-6 md:px-16 lg:px-36">
           {dummyShowsData.slice(0, 4).map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
@@ -35,7 +35,7 @@ const FeatureSection = () => {
             View All <ArrowRightIcon />
           </button>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-6 md:px-16 lg:px-36">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 px-6 md:px-16 lg:px-36">
           {dummyShowsData.slice(3, 7).map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
