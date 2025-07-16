@@ -9,14 +9,29 @@ const syncUserCreation = inngest.createFunction(
     {id: "sync-user-from-clerk"},
     { event: "clerk/user.created" },
     async ({ event }) => {
-        const { id, first_name, last_name, email_addresses, image_url } = event.data;
-        const userData = {
-            _id: id,
-            name: `${first_name} ${last_name}`,
-            email: email_addresses[0].email_address,
-            image: image_url
+        try {
+            console.log("Received user creation event:", event.data);
+            const { id, first_name, last_name, email_addresses, image_url } = event.data;
+            
+            // Check if required fields exist
+            if (!id || !email_addresses || email_addresses.length === 0) {
+                console.error("Missing required user data:", { id, email_addresses });
+                return;
+            }
+            
+            const userData = {
+                _id: id,
+                name: `${first_name || ''} ${last_name || ''}`.trim(),
+                email: email_addresses[0].email_address,
+                image: image_url || ''
+            }
+            
+            console.log("Creating user with data:", userData);
+            const createdUser = await User.create(userData);
+            console.log("User created successfully:", createdUser);
+        } catch (error) {
+            console.error("Error creating user:", error);
         }
-        await User.create(userData);
     }
 )
 
@@ -25,8 +40,18 @@ const syncUserDeletion = inngest.createFunction(
     {id: "sync-user-deletion"},
     { event: "clerk/user.deleted" },
     async ({ event }) => {
-        const { id } = event.data;
-        await User.findByIdAndDelete({_id: id});
+        try {
+            console.log("Received user deletion event:", event.data);
+            const { id } = event.data;
+            if (!id) {
+                console.error("Missing user ID for deletion");
+                return;
+            }
+            const deletedUser = await User.findByIdAndDelete(id);
+            console.log("User deleted successfully:", deletedUser);
+        } catch (error) {
+            console.error("Error deleting user:", error);
+        }
     }
 )
 
@@ -35,14 +60,27 @@ const syncUserUpdation = inngest.createFunction(
     {id: "sync-user-updation"},
     { event: "clerk/user.updated" },
     async ({ event }) => {
-        const { id, first_name, last_name, email_addresses, image_url } = event.data;
-        const userData = {
-            _id: id,
-            name: `${first_name} ${last_name}`,
-            email: email_addresses[0].email_address,
-            image: image_url
+        try {
+            console.log("Received user update event:", event.data);
+            const { id, first_name, last_name, email_addresses, image_url } = event.data;
+            
+            if (!id) {
+                console.error("Missing user ID for update");
+                return;
+            }
+            
+            const userData = {
+                name: `${first_name || ''} ${last_name || ''}`.trim(),
+                email: email_addresses?.[0]?.email_address,
+                image: image_url || ''
+            }
+            
+            console.log("Updating user with data:", userData);
+            const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
+            console.log("User updated successfully:", updatedUser);
+        } catch (error) {
+            console.error("Error updating user:", error);
         }
-        await User.findByIdAndUpdate({_id: id}, userData);
     }
 )
 
