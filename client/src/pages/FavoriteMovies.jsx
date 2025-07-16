@@ -2,7 +2,7 @@ import React from 'react'
 
 const FavoriteMovies = () => {
   return (
-    <div>
+    <div className='min-h-screen flex items-center justify-center'>
       
     </div>
   )

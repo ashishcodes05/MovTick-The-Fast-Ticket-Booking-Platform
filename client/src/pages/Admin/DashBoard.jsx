@@ -54,11 +54,11 @@ const DashBoard = () => {
   return !loading ? (
     <div className="overflow-y-auto h-screen scrollbar-none">
       <h1 className="text-2xl font-bold py-2 mb-2 ml-2">Admin <span className="text-accent">Dashboard</span></h1>
-      <div className="flex flex-col md:flex-row gap-4 items-center mb-8">
+      <div className="flex flex-wrap gap-4 items-center mb-8">
         {dashBoardCards.map((card, index) => (
           <div
             key={index}
-            className="flex items-center bg-primary/20 gap-10 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="flex items-center justify-between max-w-52 w-full bg-primary/20 gap-10 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <div className="flex flex-col gap-2">
               <h3>{card.title}</h3>
@@ -84,7 +84,7 @@ const DashBoard = () => {
                 />
               </div>
              <div className="flex flex-col mt-4">
-               <h3 className="text-lg font-semibold text-white">
+               <h3 className="text-lg font-semibold text-white truncate">
                 {show.movie.title}
               </h3>
               <div className="flex items-center justify-between text-gray-300">

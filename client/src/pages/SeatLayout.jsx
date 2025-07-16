@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 import { ArrowRight } from "lucide-react";
 
 const SeatLayout = () => {
-  window.scrollTo(0, 0);
   const { id, date } = useParams();
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);

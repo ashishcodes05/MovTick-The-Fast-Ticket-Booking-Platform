@@ -6,6 +6,7 @@ import { UserButton } from '@clerk/clerk-react';
 import { Clock1 } from 'lucide-react';
 
 const MyBookings = () => {
+  window.scrollTo(0, 0);
   const [bookings, setBookings] = useState([]); // Assuming you will fetch bookings data
   const fetchBookings = async () => {
     setBookings(dummyBookingData); // Replace with actual API call
