@@ -2,19 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { dummyBookingData } from '../../assets/assets';
 import Loader from '../../Components/Loader';
 import dayjs from 'dayjs';
+import { useAppContext } from '../../Context/AppContext';
 
 const ListBookings = () => {
+  const { axios, getToken, user } = useAppContext();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getAllBookings = async () => {
-    setBookings(dummyBookingData);
-    setLoading(false);
+    try {
+      const { data } = await axios.get('/api/admin/all-bookings', {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`
+        }
+      });
+      if (data.success) {
+        setBookings(data.bookings);
+      } else {
+        toast.error("Failed to fetch bookings.");
+      }
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    } finally {
+      setLoading(false);
+    }
   }
-
   useEffect(() => {
+    if(!user.isLoaded || !user.isSignedIn) {
+      toast.error("Please sign in to view the bookings.");
+      return;
+    }
     getAllBookings();
   }, [])
+
   return !loading ? (
     <div className='max-w-4xl  overflow-x-auto'>
       <h1 className="text-2xl font-bold py-2 mb-2 ml-2">Admin <span className="text-accent">Booking Lists</span></h1>

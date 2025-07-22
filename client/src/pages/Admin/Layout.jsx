@@ -1,10 +1,28 @@
-import React from 'react'
 import AdminNavbar from '../../Components/Admin/AdminNavbar'
 import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import { Outlet } from 'react-router'
+import { useAppContext } from '../../Context/AppContext'
+import { SignIn } from '@clerk/clerk-react'
+import { useEffect } from 'react'
+import Loader from '../../Components/Loader'
 
 const Layout = () => {
-  return (
+  const { user, isAdmin, fetchIsAdmin } = useAppContext()
+
+  if (!user.isSignedIn || !user.user) {
+    return (
+      <div className='flex items-center justify-center h-screen'>
+        <SignIn />
+      </div>
+    )
+  }
+  useEffect(() => {
+    const checkAdmin = async () => {
+      await fetchIsAdmin()
+    }
+    checkAdmin()
+  }, [fetchIsAdmin])
+  return isAdmin ? (
     <div className='flex flex-col h-screen overflow-hidden'>
       <AdminNavbar />
       <div className='flex flex-1 overflow-hidden'>
@@ -14,6 +32,8 @@ const Layout = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   )
 }
 

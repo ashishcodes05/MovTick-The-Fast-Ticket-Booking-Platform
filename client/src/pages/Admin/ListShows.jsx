@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { dummyShowsData } from '../../assets/assets';
 import dayjs from 'dayjs';
+import { useAppContext } from '../../Context/AppContext';
+import Loader from '../../Components/Loader';
 
 const ListShows = () => {
+  const { axios, getToken, user } = useAppContext();
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getAllShows = async () => {
     try {
-      setShows([
-        {
-          movie:dummyShowsData[0],
-          showDateTime: "2025-06-30T02:30:00.000Z",
-          showPrice: 250,
-          occupiedSeats: {
-            A1: "user_1",
-            A2: "user_2",
-            A3: "user_3",
-          },
+      const { data } = await axios.get('/api/admin/all-shows', {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`
         }
-      ])
+      });
+      if (data.success) {
+        setShows(data.shows);
+      } else {
+        toast.error("Failed to fetch shows.");
+      }
     } catch (error) {
       console.error("Error fetching shows:", error);
     } finally {
@@ -28,10 +29,14 @@ const ListShows = () => {
   }
 
   useEffect(() => {
+    if(!user.isLoaded || !user.isSignedIn) {
+      toast.error("Please sign in to view the shows.");
+      return;
+    }
     getAllShows();
   }, [])
 
-  return (
+  return !loading ? (
     <div className='max-w-4xl overflow-x-auto'>
       <h1 className="text-2xl font-bold py-2 mb-2 ml-2">Admin <span className="text-accent">Shows List</span></h1>
       <table className='w-full border-collapse rounded-md overflow-hidden text-nowrap'>
@@ -55,7 +60,9 @@ const ListShows = () => {
         </tbody>
       </table>
     </div>
-  )
+  ) : (
+    <Loader />
+  );
 }
 
 export default ListShows

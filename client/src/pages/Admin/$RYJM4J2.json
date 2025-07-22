@@ -1,0 +1,360 @@
+[
+  {
+    "_id": "movie_1011477",
+    "title": "Karate Kid: Legends",
+    "overview": "After a family tragedy, kung fu prodigy Li Fong is uprooted from his home in Beijing and forced to move to New York City with his mother. When a new friend needs his help, Li enters a karate competition – but his skills alone aren't enough. Li's kung fu teacher Mr. Han enlists original Karate Kid Daniel LaRusso for help, and Li learns a new way to fight, merging their two styles into one for the ultimate martial arts showdown.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/AEgggzRr1vZCLY86MAp93li43z.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/nKyBbFSooRPTJVqjrDteD1lF733.jpg",
+    "release_date": "2025-05-08",
+    "original_language": "en",
+    "tagline": "When masters unite a new legacy begins.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Drama"
+    ],
+    "vote_average": 7.281,
+    "vote_count": 18000,
+    "runtime": 94
+  },
+  {
+    "_id": "movie_541671",
+    "title": "Ballerina",
+    "overview": "Taking place during the events of John Wick: Chapter 3 – Parabellum, Eve Macarro begins her training in the assassin traditions of the Ruska Roma.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/2VUmvqsHb6cEtdfscEA6fqqVzLg.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/sItIskd5xpiE64bBWYwZintkGf3.jpg",
+    "release_date": "2025-06-04",
+    "original_language": "en",
+    "tagline": "Vengeance has a new face.",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Crime"
+    ],
+    "vote_average": 7.453,
+    "vote_count": 18000,
+    "runtime": 125
+  },
+  {
+    "_id": "movie_1061474",
+    "title": "Superman",
+    "overview": "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/g62G6aBcAcJv3ClCKmJgmHarHvq.jpg",
+    "release_date": "2025-07-09",
+    "original_language": "en",
+    "tagline": "Look up.",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action"
+    ],
+    "vote_average": 7.47,
+    "vote_count": 18000,
+    "runtime": 130
+  },
+  {
+    "_id": "movie_1119878",
+    "title": "Ice Road: Vengeance",
+    "overview": "Big rig ice road driver Mike McCann travels to Nepal to scatter his late brother’s ashes on Mt. Everest. While on a packed tour bus traversing the deadly 12,000 ft. terrain of the infamous Road to the Sky, McCann and his mountain guide encounter a group of mercenaries and must fight to save themselves, the busload of innocent travelers, and the local villagers’ homeland.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/cQN9rZj06rXMVkk76UF1DfBAico.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/962KXsr09uK8wrmUg9TjzmE7c4e.jpg",
+    "release_date": "2025-06-27",
+    "original_language": "en",
+    "tagline": "",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Drama"
+    ],
+    "vote_average": 7.015,
+    "vote_count": 18000,
+    "runtime": 113
+  },
+  {
+    "_id": "movie_1374534",
+    "title": "Almost Cops",
+    "overview": "When an overeager community officer and a reckless ex-detective are forced to team up, plenty of chaos ensues on the streets of Rotterdam.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/7bcndiaTgu1Kj5a6qyCmsWYdtI.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/qtSY2SAL5QApuCUD0sXqyzgHYnl.jpg",
+    "release_date": "2025-07-10",
+    "original_language": "nl",
+    "tagline": "",
+    "genres": [
+      "Action",
+      "Comedy",
+      "Crime",
+      "Mystery"
+    ],
+    "vote_average": 5.089,
+    "vote_count": 18000,
+    "runtime": 95
+  },
+  {
+    "_id": "movie_846422",
+    "title": "The Old Guard 2",
+    "overview": "Andy and her team of immortal warriors fight with renewed purpose as they face a powerful new foe threatening their mission to protect humanity.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/wqfu3bPLJaEWJVk3QOm0rKhxf1A.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/fd9K7ZDfzRAcbLh8JlG4HIKbtuR.jpg",
+    "release_date": "2025-07-01",
+    "original_language": "en",
+    "tagline": "Eternity has a price.",
+    "genres": [
+      "Action",
+      "Fantasy"
+    ],
+    "vote_average": 6.091,
+    "vote_count": 18000,
+    "runtime": 107
+  },
+  {
+    "_id": "movie_749170",
+    "title": "Heads of State",
+    "overview": "The UK Prime Minister and US President have a public rivalry that risks their countries' alliance. But when they become targets of a powerful enemy, they're forced to rely on each other as they go on a wild, multinational run. Allied with Noel, a brilliant MI6 agent, they must find a way to thwart a conspiracy that threatens the free world.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/lVgE5oLzf7ABmzyASEVcjYyHI41.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/xABhldZaMb6wfCH5oigV333OYnb.jpg",
+    "release_date": "2025-07-02",
+    "original_language": "en",
+    "tagline": "Two heads are better than one.",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Comedy"
+    ],
+    "vote_average": 6.985,
+    "vote_count": 18000,
+    "runtime": 113
+  },
+  {
+    "_id": "movie_1234821",
+    "title": "Jurassic World Rebirth",
+    "overview": "Five years after the events of Jurassic World Dominion, covert operations expert Zora Bennett is contracted to lead a skilled team on a top-secret mission to secure genetic material from the world's three most massive dinosaurs. When Zora's operation intersects with a civilian family whose boating expedition was capsized, they all find themselves stranded on an island where they come face-to-face with a sinister, shocking discovery that's been hidden from the world for decades.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/q0fGCmjLu42MPlSO9OYWpI5w86I.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/fQOV47FHTJdaSuSUNlzP3zXUZWE.jpg",
+    "release_date": "2025-07-01",
+    "original_language": "en",
+    "tagline": "A new era is born.",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action"
+    ],
+    "vote_average": 6.4,
+    "vote_count": 18000,
+    "runtime": 134
+  },
+  {
+    "_id": "movie_986056",
+    "title": "Thunderbolts*",
+    "overview": "After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/hqcexYHbiTBfDIdDWxrxPtVndBX.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/rthMuZfFv4fqEU4JVbgSW9wQ8rs.jpg",
+    "release_date": "2025-04-30",
+    "original_language": "en",
+    "tagline": "Everyone deserves a second shot.",
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Adventure"
+    ],
+    "vote_average": 7.428,
+    "vote_count": 18000,
+    "runtime": 127
+  },
+  {
+    "_id": "movie_1429744",
+    "title": "Ziam",
+    "overview": "In a fight for survival against a horrifying army of zombies, a former Muay Thai fighter must use skill, speed and grit to save his girlfriend.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/yHYj2t3NzsjkHVYa0bPri4sMBsg.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/tdMbbFhqyEqOK1QzNTvJjHWKbZX.jpg",
+    "release_date": "2025-07-09",
+    "original_language": "th",
+    "tagline": "",
+    "genres": [
+      "Horror",
+      "Thriller",
+      "Action"
+    ],
+    "vote_average": 6.746,
+    "vote_count": 18000,
+    "runtime": 96
+  },
+  {
+    "_id": "movie_574475",
+    "title": "Final Destination Bloodlines",
+    "overview": "Plagued by a violent recurring nightmare, college student Stefanie heads home to track down the one person who might be able to break the cycle and save her family from the grisly demise that inevitably awaits them all.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/uIpJPDNFoeX0TVml9smPrs9KUVx.jpg",
+    "release_date": "2025-05-14",
+    "original_language": "en",
+    "tagline": "Death runs in the family.",
+    "genres": [
+      "Horror",
+      "Mystery"
+    ],
+    "vote_average": 7.2,
+    "vote_count": 18000,
+    "runtime": 110
+  },
+  {
+    "_id": "movie_1287536",
+    "title": "Dora and the Search for Sol Dorado",
+    "overview": "Dora, Diego, and their new friends trek through the perilous dangers of the Amazonian jungle in search of the ancient and powerful treasure of Sol Dorado to keep it out of enemy hands.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/r3d6u2n7iPoWNsSWwlJJWrDblOH.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/9A0wQG38VdEu3DYh8HzXKXKhA6g.jpg",
+    "release_date": "2025-07-02",
+    "original_language": "en",
+    "tagline": "",
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Family"
+    ],
+    "vote_average": 7.054,
+    "vote_count": 18000,
+    "runtime": 96
+  },
+  {
+    "_id": "movie_552524",
+    "title": "Lilo & Stitch",
+    "overview": "The wildly funny and touching story of a lonely Hawaiian girl and the fugitive alien who helps to mend her broken family.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/tUae3mefrDVTgm5mRzqWnZK6fOP.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/7Zx3wDG5bBtcfk8lcnCWDOLM4Y4.jpg",
+    "release_date": "2025-05-17",
+    "original_language": "en",
+    "tagline": "Hold on to your coconuts.",
+    "genres": [
+      "Family",
+      "Science Fiction",
+      "Comedy",
+      "Adventure"
+    ],
+    "vote_average": 7.154,
+    "vote_count": 18000,
+    "runtime": 108
+  },
+  {
+    "_id": "movie_803796",
+    "title": "KPop Demon Hunters",
+    "overview": "When K-pop superstars Rumi, Mira and Zoey aren't selling out stadiums, they're using their secret powers to protect their fans from supernatural threats.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/43c1efKzA1kigNzY0HBzeoXp8LR.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/l3ycQYwWmbz7p8otwbomFDXIEhn.jpg",
+    "release_date": "2025-06-20",
+    "original_language": "en",
+    "tagline": "They sing. They dance. They battle demons.",
+    "genres": [
+      "Animation",
+      "Fantasy",
+      "Action",
+      "Comedy",
+      "Music",
+      "Family"
+    ],
+    "vote_average": 8.596,
+    "vote_count": 18000,
+    "runtime": 96
+  },
+  {
+    "_id": "movie_1087192",
+    "title": "How to Train Your Dragon",
+    "overview": "On the rugged isle of Berk, where Vikings and dragons have been bitter enemies for generations, Hiccup stands apart, defying centuries of tradition when he befriends Toothless, a feared Night Fury dragon. Their unlikely bond reveals the true nature of dragons, challenging the very foundations of Viking society.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/3lwlJL8aW6Wor9tKvME8VoMnBkn.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/7HqLLVjdjhXS0Qoz1SgZofhkIpE.jpg",
+    "release_date": "2025-06-06",
+    "original_language": "en",
+    "tagline": "The legend is real.",
+    "genres": [
+      "Fantasy",
+      "Family",
+      "Action"
+    ],
+    "vote_average": 7.887,
+    "vote_count": 18000,
+    "runtime": 125
+  },
+  {
+    "_id": "movie_1151031",
+    "title": "Bring Her Back",
+    "overview": "Following the death of their father, a brother and sister are introduced to their new sibling by their foster mother, only to learn that she has a terrifying secret.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/tObSf1VzzHt9xB0csanFtb3DRjf.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/U0A4zWh6XbJt1jDAPuGqKcu4ga.jpg",
+    "release_date": "2025-05-28",
+    "original_language": "en",
+    "tagline": "Family requires sacrifices.",
+    "genres": [
+      "Horror"
+    ],
+    "vote_average": 7.425,
+    "vote_count": 18000,
+    "runtime": 104
+  },
+  {
+    "_id": "movie_911430",
+    "title": "F1",
+    "overview": "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/vqBmyAj0Xm9LnS1xe1MSlMAJyHq.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/lkDYN0whyE82mcM20rwtwjbniKF.jpg",
+    "release_date": "2025-06-25",
+    "original_language": "en",
+    "tagline": "This is just the start.",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "vote_average": 7.664,
+    "vote_count": 18000,
+    "runtime": 156
+  },
+  {
+    "_id": "movie_1257586",
+    "title": "The Hangman",
+    "overview": "Troubled father Leon takes son camping in Appalachia. Local cult summons evil Hangman demon. Son goes missing. Leon must confront cult, monster to find him amid rising body count.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/rij9Eh4RVXyPet8A1BNU8pDvtmu.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/8aQYGyXKCohzoTjjxWzANPV2VBS.jpg",
+    "release_date": "2024-05-30",
+    "original_language": "en",
+    "tagline": "Give the devil his due.",
+    "genres": [
+      "Horror",
+      "Thriller"
+    ],
+    "vote_average": 5.108,
+    "vote_count": 18000,
+    "runtime": 98
+  },
+  {
+    "_id": "movie_1246369",
+    "title": "Muromachi Burai",
+    "overview": "Set in war-torn 15th century Kyoto, on the eve of the Onin War, the movie centers on a band of outlaws led by Hyoe (Oizumi) a scoundrel whose lethal sword skills place him at the tip of the spear in a deadly uprising against the corrupt Shogunate and its army, led by former friend-turned-archrival, Doken (Tsutsumi).",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/6U0i0HsSCvhRW4IpGzdead6QRo3.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/iHHWF01W2vNpjI8UzWh2F7tJEZp.jpg",
+    "release_date": "2025-01-17",
+    "original_language": "ja",
+    "tagline": "",
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "vote_average": 9.1,
+    "vote_count": 18000,
+    "runtime": 135
+  },
+  {
+    "_id": "movie_1020910",
+    "title": "Influencer",
+    "overview": "While struggling on a solo backpacking trip in Thailand, social media influencer Madison meets CW, who travels with ease and shows her a more uninhibited way of living. But CW's interest in her takes a darker turn.",
+    "poster_path": "https://image.tmdb.org/t/p/w500https://image.tmdb.org/t/p/original/mtXV301BF7pqwvRjsWhQo6sD10F.jpg",
+    "backdrop_path": "https://image.tmdb.org/t/p/original/ABuIGbnT6uQtHULIst9DiR7pyG.jpg",
+    "release_date": "2023-05-18",
+    "original_language": "en",
+    "tagline": "Be careful who you follow",
+    "genres": [
+      "Horror",
+      "Mystery",
+      "Thriller"
+    ],
+    "vote_average": 6.189,
+    "vote_count": 18000,
+    "runtime": 92
+  }
+]

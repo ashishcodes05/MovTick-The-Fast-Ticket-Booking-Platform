@@ -11,8 +11,13 @@ import React, { useEffect } from "react";
 import { dummyDashboardData } from "../../assets/assets";
 import Loader from "../../Components/Loader";
 import dayjs from "dayjs";
+import { useAppContext } from "../../Context/AppContext";
+import toast from "react-hot-toast";
 
 const DashBoard = () => {
+
+  const { axios, getToken, user, imageurl } = useAppContext();
+
   const [dashBoardData, setDashboardData] = React.useState({
     totalBookings: 0,
     activeShows: [],
@@ -44,11 +49,30 @@ const DashBoard = () => {
   ];
 
   const fetchDashboardData = async () => {
-    setDashboardData(dummyDashboardData);
-    setLoading(false);
+    try {
+      const { data } = await axios.get("/api/admin/dashboard", {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
+        },
+      });
+      if (data.success) {
+        setDashboardData(data.dashboardData);
+      } else {
+        toast.error("Failed to fetch dashboard data.");
+      }
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
+      setDashboardData(dummyDashboardData);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
+    if(!user.isLoaded || !user.isSignedIn) {
+      toast.error("Please sign in to view the dashboard.");
+      return;
+    }
     fetchDashboardData();
   }, []);
   return !loading ? (
@@ -76,10 +100,10 @@ const DashBoard = () => {
               key={show._id}
               className="bg-primary/20 p-4 rounded-lg shadow-md"
             >
-              <div className="w-full overflow-hidden rounded-md ">
+              <div className="w-full h-80 overflow-hidden rounded-md ">
                 <img
                   className="w-full h-full object-cover"
-                  src={show.movie.poster_path}
+                  src={show.movie.poster_path ? `${imageurl}${show.movie.poster_path}` : 'placeholder.jpg'}
                   alt={show.movie.title}
                 />
               </div>

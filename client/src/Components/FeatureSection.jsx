@@ -3,9 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { assets, dummyShowsData } from "../assets/assets";
 import MovieCard from "./MovieCard";
+import { useAppContext } from "../Context/AppContext";
 
 const FeatureSection = () => {
   const navigate = useNavigate();
+  const { shows } = useAppContext();
   return (
     <>
       <div className="py-10">
@@ -19,7 +21,7 @@ const FeatureSection = () => {
           </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 px-6 md:px-16 lg:px-36">
-          {dummyShowsData.slice(0, 4).map((movie) => (
+          {shows.slice(0, 4).map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
         </div>
@@ -36,7 +38,7 @@ const FeatureSection = () => {
           </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 px-6 md:px-16 lg:px-36">
-          {dummyShowsData.slice(3, 7).map((movie) => (
+          {shows.slice(4, 8).map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
         </div>

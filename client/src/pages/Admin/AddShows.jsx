@@ -3,16 +3,39 @@ import { dummyShowsData } from "../../assets/assets";
 import Loader from "../../Components/Loader";
 import { CheckIcon, DeleteIcon, StarIcon } from "lucide-react";
 import { kConverter } from "../../lib/kConverter";
+import { useAppContext } from "../../Context/AppContext";
+import toast from "react-hot-toast";
 
 const AddShows = () => {
+  const { axios, getToken, user, imageurl } = useAppContext();
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateTimeSelection, setDateTimeSelection] = useState({});
   const [dateTimeInput, setDateTimeInput] = useState("");
   const [showPrice, setShowPrice] = useState("");
+  const [addingShow, setAddingShow] = useState(false);
+  console.log(selectedMovie);
 
   const fetchNowPlayingMovies = async () => {
-    setNowPlayingMovies(dummyShowsData);
+    try {
+      console.log("Fetching now playing movies...");
+      const { data } = await axios.get('/api/show/now-playing', {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`
+        }
+      });
+      console.log("API Response:", data);
+      if(data.success){
+        setNowPlayingMovies(data.movies);
+        console.log("Movies set:", data.movies.length);
+      } else {
+        console.error("API returned success: false, using dummy data");
+        setNowPlayingMovies(dummyShowsData);
+      }
+    } catch(err){
+      console.error("Error fetching movies, using dummy data:", err);
+      setNowPlayingMovies(dummyShowsData);
+    }
   };
 
   const handleDateTimeAdd = () => {
@@ -40,6 +63,41 @@ const AddShows = () => {
     });
   };
 
+  const handleAddShow = async () => {
+    if (!selectedMovie || Object.keys(dateTimeSelection).length === 0 || !showPrice) {
+      return toast.error("Missing required fields");
+    }
+    setAddingShow(true);
+    try {
+      const showsInput = Object.entries(dateTimeSelection).map(([date, times]) => ({
+        date,
+        time: times
+      }));
+
+      const { data } = await axios.post('/api/show/add', {
+        movieId: selectedMovie,
+        showsInput,
+        showPrice
+      }, {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`
+        }
+      });
+      if(data.success){
+        setDateTimeSelection({});
+        setShowPrice("");
+        setDateTimeInput("");
+        toast.success("Show added successfully");
+      } else {
+        toast.error("Failed to add show");
+      }
+    } catch (err) {
+      console.error("Error adding show:", err);
+    } finally {
+      setAddingShow(false);
+    }
+  };
+
   useEffect(() => {
     fetchNowPlayingMovies();
   }, []);
@@ -54,27 +112,27 @@ const AddShows = () => {
         <div className="group flex flex-wrap gap-4 mt-4 w-max">
           {nowPlayingMovies.map((movie) => (
             <div
-              key={movie.id}
+              key={movie._id}
               className={`relative max-w-40 cursor-pointer group-hover:not-hover:opacity-40 hover:-translate-y-1 transition duration-300`}
-              onClick={() => setSelectedMovie(movie.id)}
+              onClick={() => setSelectedMovie(movie._id)}
             >
               <div className="relative rounded-lg overflow-hidden">
                 <img
-                  src={movie.poster_path}
-                  alt=""
+                  src={movie.poster_path ? `${imageurl}${movie.poster_path}` : 'placeholder.jpg'}
+                  alt={movie.title}
                   className="w-full object-cover brightness-90"
                 />
                 <div className="text-sm flex items-center justify-between p-2 bg-black/70 w-full absolute bottom-0 left-0">
                   <p className="flex items-center gap-1 text-gray-400">
                     <StarIcon className="w-4 h-4 text-accent fill-accent" />{" "}
-                    {movie.vote_average.toFixed(1)}
+                    {movie.vote_average ? movie.vote_average.toFixed(1) : '0.0'}
                   </p>
                   <p className="text-gray-300">
-                    {kConverter(movie.vote_count)} Votes
+                    {kConverter(movie.vote_count || 0)} Votes
                   </p>
                 </div>
               </div>
-              {selectedMovie === movie.id && (
+              {selectedMovie === movie._id && (
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-primary h-6 w-6 rounded">
                   <CheckIcon className="w-4 h-4 text-white" strokeWidth={2.5} />
                 </div>
@@ -113,6 +171,7 @@ const AddShows = () => {
             className="outline-none rounded-md"
           />
           <button
+            type="button"
             onClick={() => handleDateTimeAdd()}
             className="bg-primary/80 text-white px-3 py-2 text-sm rounded-lg hover:bg-primary cursor-pointer"
           >
@@ -141,8 +200,8 @@ const AddShows = () => {
           </ul>
         </div>
       )}
-      <button className="mt-6 bg-primary text-white px-4 py-2 rounded-md hover:bg-accent hover:text-primary transition-colors cursor-pointer">
-        Add Show
+      <button onClick={handleAddShow} type="submit" disabled={addingShow} className="mt-6 bg-primary text-white px-4 py-2 rounded-md hover:bg-accent hover:text-primary transition-colors cursor-pointer">
+        {addingShow ? "Adding..." : "Add Shows"}
       </button>
     </>
   ) : (

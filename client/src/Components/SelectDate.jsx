@@ -17,7 +17,7 @@ const SelectDate = ({ dateTime, id }) => {
     }
     return (
         <div className="px-6 md:px-16 lg:px-36 py-5 w-full">
-            <div className="bg-black/20 backdrop-blur-md px-8 py-12 rounded-xl flex flex-col gap-4">
+            <div className="bg-black/20 border border-accent backdrop-blur-md px-8 py-12 rounded-xl flex flex-col gap-4">
                 <h1 className="text-lg font-semibold mb-2 flex items-center gap-2">Choose your perfect day for the show <Calendar /></h1>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
