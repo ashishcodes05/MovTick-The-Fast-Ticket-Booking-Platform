@@ -13,7 +13,7 @@ const Trailer = ({ isOpen, closeModal, videoId }) => {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex justify-center items-center">
             <div className="fixed inset-0 bg-black/80"></div>
-          <div className="relative bg-primary/10 h-[calc(100vh-8rem)] flex justify-center items-center w-full max-w-3xl p-4">
+          <div className="relative bg-primary/10 h-[calc(100vh-32rem)] md:h-[calc(100vh-8rem)] flex justify-center items-center w-full max-w-3xl p-4">
             {/* Close Button */}
             <button
               onClick={closeModal}

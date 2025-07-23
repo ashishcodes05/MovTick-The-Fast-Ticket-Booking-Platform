@@ -19,7 +19,7 @@ const slides = [
     year: 2019,
     duration: "3h 1m",
     genres: "Action | Adventure | Sci-Fi",
-    description: "In the aftermath of Thanos' devastating snap, the remaining Avengers must find a way to bring back their fallen allies and restore balance to the universe.",
+    description: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
     logo: assets.marvelLogo,
   },
   {
@@ -29,7 +29,7 @@ const slides = [
     year: 2023,
     duration: "2h 49m",
     genres: "Action | Adventure | Thriller",
-    description: "The legendary assassin uncovers a path to defeating the High Table—but must face off against a new global enemy.",
+    description: "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
   },
   {
     img: hero_4,
@@ -38,7 +38,7 @@ const slides = [
     year: 2025,
     duration: "2h 35m",
     genres: "Action | Adventure | Fantasy",
-    description: "In a world where demons threaten humanity, a young boy becomes a demon slayer to avenge his family and protect those he loves.",
+    description: "As the Demon Slayer Corps members and Hashira engaged in a group strength training program, the Hashira Training, in preparation for the forthcoming battle against the demons, Muzan Kibutsuji appears at the Ubuyashiki Mansion. With the head of the Demon Corps in danger, Tanjiro and the Hashira rush to the headquarters but are plunged into a deep descent to a mysterious space by the hands of Muzan Kibutsuji. The destination of where Tanjiro and Demon Slayer Corps have fallen is the demons' stronghold – the Infinity Castle. And so, the battleground is set as the final battle between the Demon Slayer Corps and the demons ignites.",
   },
 ];
 
@@ -68,7 +68,7 @@ const HeroSection = () => {
                 src={window.innerWidth < 768 ? `${imageurl}${slide.poster_path}` : slide.img}
                 alt={slide.title}
               />
-              <div className="absolute top-1/3 left-6 md:left-[10%] z-10 max-w-xl text-white">
+              <div className="absolute top-1/3 left-6 md:left-[10%] z-10 max-w-xl text-white px-4">
                 {slide.logo && (
                   <img className="h-10 mb-4" src={slide.logo} alt="logo" />
                 )}
@@ -85,7 +85,7 @@ const HeroSection = () => {
                   </div>
                 </div>
                 <p className="text-gray-300 mt-4 max-sm:text-lg text-sm md:text-base">
-                  {slide.description}
+                  {slide.description.slice(0,400) + "..."}
                 </p>
                 <button
                   onClick={() => navigate("/movies")}
