@@ -10,6 +10,7 @@ import bookingRouter from './routes/bookingRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import creditRouter from './routes/creditRoutes.js';
+import { stripeWebhookHandler } from './controllers/stripeWebhooks.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
+
+// Stripe Webhooks Route
+app.use('/api/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler);
 
 // Add request logging middleware
 app.use((req, res, next) => {
