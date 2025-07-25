@@ -25,8 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
 
-// Stripe Webhooks Route
-app.use('/api/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler);
+// Stripe Webhooks Route - MUST be before express.json() middleware
+app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), stripeWebhookHandler);
+app.get('/api/stripe/webhook', (req, res) => {
+    res.json({ message: 'Stripe webhook endpoint is active', timestamp: new Date().toISOString() });
+});
 
 // Add request logging middleware
 app.use((req, res, next) => {
