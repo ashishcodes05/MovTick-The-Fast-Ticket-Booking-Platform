@@ -20,17 +20,13 @@ export const AppProvider = ({ children }) => {
 
   const fetchIsAdmin = async () => {
     try {
-      console.log("Checking admin status...");
-      
       if (!user.isSignedIn || !user.user) {
-        console.log("User not signed in");
         setIsAdmin(false);
         return;
       }
       
       const token = await getToken();
       if (!token) {
-        console.error("No token available");
         setIsAdmin(false);
         return;
       }
@@ -41,8 +37,6 @@ export const AppProvider = ({ children }) => {
         },
       });
       
-      console.log("Admin check response:", data);
-      
       if (data.success) {
         setIsAdmin(data.isAdmin || false);
         
@@ -52,16 +46,14 @@ export const AppProvider = ({ children }) => {
         }
       } else {
         setIsAdmin(false);
-        console.error("Admin check failed:", data.message);
       }
     } catch (error) {
       console.error("Error fetching admin status:", error);
       setIsAdmin(false);
       
       if (error.response?.status === 401) {
-        console.log("User not authenticated");
+        // User not authenticated
       } else if (error.response?.status === 403) {
-        console.log("User is not an admin");
         if (location.pathname.startsWith("/admin")) {
           navigate("/");
           toast.error("You are not authorized to access this page.");
@@ -73,7 +65,6 @@ export const AppProvider = ({ children }) => {
   const fetchShows = async () => {
     try {
       const { data } = await axios.get("/api/show/all");
-      console.log(data.shows);
       if (data.success) {
         setShows(data.shows);
       } else {
@@ -86,37 +77,28 @@ export const AppProvider = ({ children }) => {
 
   const fetchFavoriteMovies = async () => {
     try {
-      console.log("Fetching favorite movies...");
-      
       if (!user.isSignedIn || !user.user) {
-        console.log("User not signed in");
         return;
       }
       
       const token = await getToken();
       if (!token) {
-        console.error("No token available");
         return;
       }
       
-      console.log("Making request to /api/user/favourites");
       const { data } = await axios.get("/api/user/favourites", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       
-      console.log("Response:", data);
       if (data.success) {
         setFavoriteMovies(data.movies || []);
-        console.log("Favorite movies set:", data.movies?.length || 0);
       } else {
-        console.error("API returned success: false", data);
         toast.error("Failed to fetch favorite movies.");
       }
     } catch (error) {
       console.error("Error fetching favorite movies:", error);
-      console.error("Error response:", error.response?.data);
       if (error.response?.status === 401) {
         toast.error("Please sign in to view favorites");
       } else {

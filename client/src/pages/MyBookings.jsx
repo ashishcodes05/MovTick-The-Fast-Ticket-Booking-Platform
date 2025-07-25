@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { UserButton } from "@clerk/clerk-react";
 import { Clock1 } from "lucide-react";
 import { useAppContext } from "../Context/AppContext";
+import { Link } from "react-router";
 
 const MyBookings = () => {
   window.scrollTo(0, 0);
@@ -43,6 +44,26 @@ const MyBookings = () => {
     if(user.isSignedIn) {
       fetchBookings();
     }
+  }, [user.isSignedIn]);
+
+  // Add effect to refetch bookings when the page becomes visible (useful after payment redirect)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && user.isSignedIn) {
+        fetchBookings();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Also refetch when the page loads (useful for payment returns)
+    if (user.isSignedIn) {
+      fetchBookings();
+    }
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [user.isSignedIn]);
 
   return !loading ? (
@@ -97,9 +118,9 @@ const MyBookings = () => {
                 <p>Total Seats: {booking.bookedSeats.length}</p>
                 <p>Seat Number: {booking.bookedSeats.join(", ")}</p>
                 {!booking.isPaid && (
-                  <button className="bg-primary hover:bg-accent hover:text-primary text-white py-1 px-2 rounded">
+                  <Link to={booking.paymentLink} className="bg-primary hover:bg-accent hover:text-primary text-white py-1 px-2 rounded">
                     Pay Now
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>

@@ -119,33 +119,3 @@ export const getOccupiedSeats = async (req, res) => {
         return res.status(500).send({ success: false, message: "Internal server error. " + error.message });
     }
 };
-
-// Test endpoint to manually update payment status (for debugging)
-export const updatePaymentStatus = async (req, res) => {
-    try {
-        const { bookingId } = req.params;
-        const { isPaid } = req.body;
-        
-        const updatedBooking = await Booking.findByIdAndUpdate(
-            bookingId,
-            { 
-                isPaid: isPaid,
-                paymentLink: isPaid ? "" : undefined 
-            },
-            { new: true }
-        );
-        
-        if (!updatedBooking) {
-            return res.status(404).send({ success: false, message: "Booking not found" });
-        }
-        
-        return res.status(200).send({ 
-            success: true, 
-            message: "Payment status updated", 
-            booking: updatedBooking 
-        });
-    } catch (error) {
-        console.error("Error updating payment status:", error);
-        return res.status(500).send({ success: false, message: "Internal server error." });
-    }
-};
