@@ -21,15 +21,16 @@ app.use(cors({
   origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000'],
   credentials: true
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(clerkMiddleware());
 
 // Stripe Webhooks Route - MUST be before express.json() middleware
 app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), stripeWebhookHandler);
 app.get('/api/stripe/webhook', (req, res) => {
     res.json({ message: 'Stripe webhook endpoint is active', timestamp: new Date().toISOString() });
 });
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(clerkMiddleware());
 
 // Add request logging middleware
 app.use((req, res, next) => {
