@@ -20,6 +20,7 @@ import ListShows from "./pages/Admin/ListShows.jsx";
 import ListBookings from "./pages/Admin/ListBookings.jsx";
 import { AppProvider } from "./Context/AppContext.jsx";
 import Releases from "./pages/Releases.jsx";
+import Loader from "./Components/Loader.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/my-bookings",
         element: <MyBookings />,
+      },
+      {
+        path: "/loading/:nextUrl",
+        element: <Loader />,
       },
       {
         path: "/favourite",

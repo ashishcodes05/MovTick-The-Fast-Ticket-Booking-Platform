@@ -1,6 +1,7 @@
 import Booking from "../models/Booking.js";
 import Show from "../models/Show.js";
 import stripe from "stripe";
+import dayjs from "dayjs";
 
 //function to check availabilty of selected seats for a movie
 const checkSeatsAvailability = async (showId, selectedSeats) => {
@@ -60,7 +61,35 @@ export const createBooking = async (req, res) => {
             showData.occupiedSeats.set(seat, userId); // Mark the seat as occupied
         });
         await showData.save(); // Save the updated show data
-        return res.status(201).send({ success: true, message: "Booked Successfully", booking });
+        const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+        const line_items = [{
+            price_data: {
+                currency: 'inr',
+                product_data: {
+                    name: showData.movie.title,
+                    description: `Booking for ${showData.movie.title} on ${dayjs(showData.showTime).format('MMMM Do YYYY, h:mm A')}`,
+                },
+                unit_amount: Math.floor(booking.amount) * 100, // Convert to cents
+            },
+            quantity: 1,
+        }]
+
+        const session = await stripeInstance.checkout.sessions.create({
+            line_items,
+            mode: 'payment',
+            success_url: `${origin}/loading/my-bookings`,
+            cancel_url: `${origin}/my-bookings`,
+            metadata: {
+                bookingId: booking._id.toString(),
+                userId: userId,
+                showId: showId,
+            },
+            expires_at: Math.floor(Date.now() / 1000) + 30 * 60, // 30 minutes expiration
+        });
+        booking.paymentLink = session.url;
+        await booking.save(); // Save the booking with the payment link
+
+        return res.status(201).send({ success: true, url: session.url });
     } catch (error) {
         console.error("Error creating booking:", error);
         return res.status(500).send({ success: false, message: "Internal server error." });

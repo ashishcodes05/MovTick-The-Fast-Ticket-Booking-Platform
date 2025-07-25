@@ -72,13 +72,19 @@ const SeatLayout = () => {
         headers: { Authorization: `Bearer ${await getToken()}` }
       });
       if (data.success) {
-        toast.success("Tickets booked successfully");
-        navigate("/my-bookings");
+        if (data.url) {
+          // Redirect to Stripe payment gateway
+          window.location.href = data.url;
+        } else {
+          toast.success("Tickets booked successfully!");
+          navigate("/my-bookings");
+        }
       } else {
-        toast.error("Error booking tickets");
+        toast.error(data.message || "Error booking tickets");
       }
     } catch (error) {
       console.error("Error booking tickets:", error);
+      toast.error("Error booking tickets. Please try again.");
     }
   }
 
