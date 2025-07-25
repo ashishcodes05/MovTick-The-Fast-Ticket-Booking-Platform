@@ -90,7 +90,7 @@ const MovieDetails = () => {
 
   if (!show) return <Loader />;
   return !loading ? (
-    <div>
+    <div className="min-h-screen">
       <div className="w-full h-screen relative">
         <img
           className="w-full h-full object-cover opacity-40"
@@ -113,19 +113,19 @@ const MovieDetails = () => {
               <h2 className="px-4 py-2 flex items-center justify-center bg-primary w-14 rounded-full">
                 2D
               </h2>
-              <h1 className="text-3xl md:text-5xl font-bold">{show.title}</h1>
+              <h1 className="text-2xl md:text-5xl font-bold">{show.title}</h1>
               <p className="text-md text-accent flex items-center gap-2 mt-2">
                 <Star className="w-6 h-6 text-accent fill-accent" />
-                <span className="ml-1">
+                <span className="ml-1 text-sm md:text-lg">
                   {show.vote_average.toFixed(1) || 9} / 10 Ratings
                 </span>
               </p>
-              <p className="text-sm">
+              <p className="text-xs md:text-sm">
                 {show.genre_names.join(" | ")} &bull;{" "}
                 {dayjs(show.release_date).format("D MMMM, YYYY")} &bull;{" "}
                 <TimeConverter timeInMinutes={show.runtime} />
               </p>
-              <p className="">{window.innerWidth < 768 ? show.overview.slice(0, 300) + "..." : show.overview}</p>
+              <p className="text-sm md:text-lg">{window.innerWidth < 768 || window.innerHeight < 400 ? show.overview.slice(0, 300) + "..." : show.overview}</p>
               <div className="flex items-center gap-4 mt-4">
                 <button onClick={openModal} className="flex gap-1 items-center bg-accent text-primary max-md:text-sm px-2 md:px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
                   <ClapperboardIcon className="w-4 h-4 mr-1" />
