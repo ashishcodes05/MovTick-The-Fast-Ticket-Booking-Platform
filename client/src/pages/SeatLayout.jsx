@@ -6,6 +6,10 @@ import { dummyDateTimeData, dummyShowsData } from "../assets/assets";
 import dayjs from "dayjs";
 import { ArrowRight } from "lucide-react";
 import { useAppContext } from "../Context/AppContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const SeatLayout = () => {
   const { id, date } = useParams();
@@ -44,7 +48,9 @@ const SeatLayout = () => {
 
   const getOccupiedSeats = async () => {
     try {
-      const { data } = await axios.get(`/api/booking/seats/${selectedTime.showId}`);
+      const { data } = await axios.get(
+        `/api/booking/seats/${selectedTime.showId}`
+      );
       if (data.success) {
         setOccupiedSeats(data.occupiedSeats);
       } else {
@@ -53,40 +59,59 @@ const SeatLayout = () => {
     } catch (error) {
       console.error("Error fetching occupied seats:", error);
     }
-  }
+  };
 
   const bookTickets = async () => {
     try {
-      if(!user.isSignedIn) {
+      if (!user.isSignedIn) {
         toast.error("Please sign in to book tickets");
         return;
       }
-      if(!selectedTime || selectedSeats.length === 0) {
+      if (!selectedTime || selectedSeats.length === 0) {
         toast.error("Please select a time and at least one seat");
         return;
       }
-      const { data } = await axios.post("/api/booking/create", {
-        showId: selectedTime.showId,
-        selectedSeats
-      }, {
-        headers: { Authorization: `Bearer ${await getToken()}` }
-      });
-      if (data.success) {
-        if (data.url) {
-          // Redirect to Stripe payment gateway
-          window.location.href = data.url;
-        } else {
-          toast.success("Tickets booked successfully!");
-          navigate("/my-bookings");
+      MySwal.fire({
+        title: "Confirm Booking",
+        text: `You are about to book ${selectedSeats.length} seat(s) for ${
+          show.title
+        } at ${dayjs(selectedTime.time).format("hh:mm A")} on ${dayjs(
+          date
+        ).format("dddd, DD MMMM YYYY")}. Do you want to proceed?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, book now!",
+        cancelButtonText: "No, cancel",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const { data } = await axios.post(
+            "/api/booking/create",
+            {
+              showId: selectedTime.showId,
+              selectedSeats,
+            },
+            {
+              headers: { Authorization: `Bearer ${await getToken()}` },
+            }
+          );
+          if (data.success) {
+            if (data.url) {
+              // Redirect to Stripe payment gateway
+              window.location.href = data.url;
+            } else {
+              toast.success("Tickets booked successfully!");
+              navigate("/my-bookings");
+            }
+          } else {
+            toast.error(data.message || "Error booking tickets");
+          }
         }
-      } else {
-        toast.error(data.message || "Error booking tickets");
-      }
+      });
     } catch (error) {
       console.error("Error booking tickets:", error);
       toast.error("Error booking tickets. Please try again.");
     }
-  }
+  };
 
   useEffect(() => {
     getShowDetails();
@@ -103,18 +128,18 @@ const SeatLayout = () => {
       toast.error("Please select a time first");
       return;
     }
-    
+
     // Prevent selection of occupied seats
     if (occupiedSeats.includes(seat)) {
       toast.error("This seat is already occupied");
       return;
     }
-    
+
     if (!selectedSeats.includes(seat) && selectedSeats.length >= 5) {
       toast.error("You can only select up to 5 seats");
       return;
     }
-    
+
     setSelectedSeats((prevState) =>
       prevState.includes(seat)
         ? prevState.filter((s) => s !== seat)
@@ -127,7 +152,7 @@ const SeatLayout = () => {
       const seat = `${row}${index + 1}`;
       const isOccupied = occupiedSeats.includes(seat);
       const isSelected = selectedSeats.includes(seat);
-      
+
       return (
         <button
           key={seat}
@@ -157,19 +182,18 @@ const SeatLayout = () => {
     <div className="min-h-screen px-6 md:px-16 lg:px-36 mt-24">
       <div className="bg-primary/20 border border-accent rounded-lg p-6 mb-8 flex flex-col gap-2">
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-xl font-bold text-white">
-            Booking Details:
+          <h1 className="text-xl font-bold text-white">Booking Details:</h1>
+          <h1 className="text-3xl font-bold text-white">{show.title}</h1>
+          <h1 className="text-accent text-xl">
+            {dayjs(date).format("dddd, DD MMMM YYYY")}
           </h1>
-          <h1 className="text-3xl font-bold text-white">
-            {show.title} 
-          </h1>
-          <h1 className="text-accent text-xl">{dayjs(date).format("dddd, DD MMMM YYYY")}</h1>
           <h2 className="text-xl text-gray-300">
             Selected Time:{" "}
             {selectedTime ? dayjs(selectedTime.time).format("hh:mm A") : "None"}
           </h2>
           <h2 className="text-lg text-gray-400">
-            Selected Seats ({selectedSeats.length} / 5): {selectedSeats.length > 0 ? (
+            Selected Seats ({selectedSeats.length} / 5):{" "}
+            {selectedSeats.length > 0 ? (
               <span className="text-white">{selectedSeats.join(", ")}</span>
             ) : (
               <span className="text-gray-500">None</span>
@@ -200,7 +224,9 @@ const SeatLayout = () => {
 
       {/* Seat Layout Section */}
       <div>
-        <h1 className="text-xl font-bold text-white mb-6 text-center">Grab your seats</h1>
+        <h1 className="text-xl font-bold text-white mb-6 text-center">
+          Grab your seats
+        </h1>
         <div className="mb-8">
           {seatGroups[0].map((group, index) => (
             <div
@@ -232,7 +258,9 @@ const SeatLayout = () => {
       <div className="flex items-center justify-center gap-4 mt-4">
         <button
           className="bg-primary px-4 py-2 rounded-md text-white mt-4 hover:bg-accent hover:text-primary transition-colors"
-          onClick={() => { bookTickets() }}
+          onClick={() => {
+            bookTickets();
+          }}
         >
           Proceed <ArrowRight className="inline-block ml-2" />
         </button>

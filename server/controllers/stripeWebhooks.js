@@ -2,30 +2,18 @@ import stripe from "stripe";
 import Booking from "../models/Booking.js";
 
 export const stripeWebhookHandler = async (req, res) => {
-    console.log("=== Webhook received ===");
-    console.log("Headers:", req.headers);
-    console.log("Body type:", typeof req.body);
-    console.log("Body length:", req.body ? req.body.length : 0);
-    console.log("Webhook secret exists:", !!process.env.STRIPE_WEBHOOK_SECRET);
-    console.log("Webhook secret length:", process.env.STRIPE_WEBHOOK_SECRET?.length);
-    
     const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
     const sig = req.headers["stripe-signature"];
     let event;
     
     if (!sig) {
-        console.error("Missing stripe-signature header");
         return res.status(400).send("No stripe-signature header found");
     }
     
-    console.log("Stripe signature found:", sig.substring(0, 20) + "...");
-    
     try {
         event = stripeInstance.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-        console.log("✅ Webhook event constructed successfully:", event.type);
     } catch (err) {
-        console.error("❌ Webhook signature verification failed:", err.message);
-        console.error("Raw body:", req.body.toString());
+        console.error(`Webhook Error: ${err.message}`);
         return res.status(400).send(`Webhook Error: ${err.message}`);
     }
     

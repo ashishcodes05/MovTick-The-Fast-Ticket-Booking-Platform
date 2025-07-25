@@ -67,7 +67,7 @@ const MyBookings = () => {
   }, [user.isSignedIn]);
 
   return !loading ? (
-    <div className="min-h-screen px-6 md:px-16 lg:px-36 mt-24 ">
+    <div className="min-h-screen px-6 md:px-16 lg:px-36 mt-24 mb-16 ">
       <h1 className="text-2xl font-bold mb-4">My Bookings</h1>
       <div className="flex flex-col gap-4 text-white">
         {bookings.length === 0 ? (
@@ -78,7 +78,7 @@ const MyBookings = () => {
           bookings.map((booking) => (
             <div
               key={booking._id}
-              className="flex items-center max-w-3xl bg-primary/20 py-4 px-12 rounded-md"
+              className="flex items-center md:min-h-48 max-w-4xl bg-primary/20 gap-2 py-4 px-2 md:px-12 rounded-md"
             >
               <div className="w-16 md:w-24 rounded-lg overflow-hidden">
                 <img
@@ -87,40 +87,35 @@ const MyBookings = () => {
                   alt=""
                 />
               </div>
-              <div className="flex flex-col gap-2 ml-4">
-                <h1 className="text-xl font-semibold">
+              <div className="flex flex-col gap-1 md:gap-4 md:ml-4 flex-2/3">
+                <h1 className="md:text-2xl font-semibold">
                   {booking.show.movie.title}
                 </h1>
-                <p>
-                  {booking.show.movie.genre_names.join(", ")}
-                </p>
-                <p className="text-sm text-gray-300">
+                <p className="max-md:text-xs text-xl text-gray-300">
                   Date:{" "}
                   {dayjs(booking.show.showDateTime.date).format(
                     "dddd, MMMM D YYYY"
                   )}
                 </p>
-                <p className="text-sm text-gray-300">
+                <p className="max-md:text-xs text-xl text-gray-300">
                   Time: {dayjs(booking.show.showDateTime.date).format("h:mm A")}
                 </p>
               </div>
-              <div className="ml-auto flex flex-col items-center gap-2 ">
+              <div className="ml-auto flex flex-col items-center gap-1 md:gap-4 flex-1/3">
                 <div className="flex items-center gap-2">
-                  <p className="text-3xl ">₹{booking.amount}</p>
-                  {!booking.isPaid ? (
-                    <p className="text-sm flex items-center text-gray-300">
-                      <Clock1 className="w-4 h-4 mr-1" /> Pending
-                    </p>
-                  ) : (
-                    <p className="text-sm text-gray-300">Paid</p>
-                  )}
+                  <p className="text-xs md:text-3xl text-accent ">₹{booking.amount}</p>
                 </div>
-                <p>Total Seats: {booking.bookedSeats.length}</p>
-                <p>Seat Number: {booking.bookedSeats.join(", ")}</p>
-                {!booking.isPaid && (
-                  <Link to={booking.paymentLink} className="bg-primary hover:bg-accent hover:text-primary text-white py-1 px-2 rounded">
-                    Pay Now
+                <p className="max-md:text-xs">Total Seats: {booking.bookedSeats.length}</p>
+                <p className="max-md:text-xs">Seat No: {booking.bookedSeats.join(", ")}</p>
+                {!booking.isPaid ? (
+                  <Link to={booking.paymentLink} className="bg-primary hover:bg-accent max-md:text-xs flex items-center hover:text-primary text-white py-1 px-2 rounded">
+                    <p className="text-sm flex items-center text-gray-300">
+                      <Clock1 className="w-4 h-4 mr-1" />
+                    </p>
+                    pending
                   </Link>
+                ): (
+                  <p className="max-md:text-xs text-gray-300">Paid</p>
                 )}
               </div>
             </div>

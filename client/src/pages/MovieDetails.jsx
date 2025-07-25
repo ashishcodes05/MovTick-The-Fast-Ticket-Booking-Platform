@@ -127,11 +127,11 @@ const MovieDetails = () => {
               </p>
               <p className="">{window.innerWidth < 768 ? show.overview.slice(0, 300) + "..." : show.overview}</p>
               <div className="flex items-center gap-4 mt-4">
-                <button onClick={openModal} className="flex gap-1 items-center bg-accent text-primary px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
+                <button onClick={openModal} className="flex gap-1 items-center bg-accent text-primary max-md:text-sm px-2 md:px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
                   <ClapperboardIcon className="w-4 h-4 mr-1" />
                   <span>Watch Trailer</span>
                 </button>
-                <button onClick={() => navigate(`/booking/${show._id}`)} className="flex gap-1 items-center bg-primary text-white px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
+                <button onClick={() => navigate(`/booking/${show._id}`)} className="flex gap-1 items-center bg-primary text-white max-md:text-sm px-2 md:px-4 py-2 rounded-md hover:scale-102 cursor-pointer">
                   <LucideTickets className="w-4 h-4 mr-1" />
                   <span>Book Tickets</span>
                 </button>
