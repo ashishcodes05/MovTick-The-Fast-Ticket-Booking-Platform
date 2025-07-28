@@ -150,13 +150,13 @@ const MovieDetails = () => {
             <span>({kConverter(show.vote_count)} votes)</span>
           </div>
           <div className="flex gap-1 ">
-            <p>{show.genre_names.join(" | ")}</p>
-            <p className="flex items-center gap-1">
+            <p className="max-md:text-sm text-md">{show.genre_names.join(" | ")}</p>
+            <p className="flex items-center gap-1 max-md:text-sm text-md">
               {" "}
               &bull; <Clock />
               <TimeConverter timeInMinutes={show.runtime} />
             </p>
-            <p> &bull; {dayjs(show.release_date).format("MMMM D, YYYY")}</p>
+            <p className="max-md:text-sm text-md"> &bull; {dayjs(show.release_date).format("MMMM D, YYYY")}</p>
           </div>
           <p className="max-md:text-sm text-md">
             {window.innerWidth > 768
@@ -166,13 +166,13 @@ const MovieDetails = () => {
           <div className="flex items-center gap-4 mt-8">
             <button
               onClick={openModal}
-              className="bg-accent text-primary py-2 px-4 flex items-center gap-1 rounded-lg hover:bg-accent/80 cursor-pointer"
+              className="bg-accent text-primary max-md:text-sm py-2 px-4 flex items-center gap-1 rounded-lg hover:bg-accent/80 cursor-pointer"
             >
               <Clapperboard /> Watch Trailer
             </button>
             <button
               onClick={() => navigate(`/booking/${id}`)}
-              className="bg-primary text-accent py-2 px-4 flex items-center gap-1 rounded-lg hover:bg-primary/80 cursor-pointer"
+              className="bg-primary text-accent py-2 px-4 max-md:text-sm flex items-center gap-1 rounded-lg hover:bg-primary/80 cursor-pointer"
             >
               <LucideTickets /> Book Tickets
             </button>
