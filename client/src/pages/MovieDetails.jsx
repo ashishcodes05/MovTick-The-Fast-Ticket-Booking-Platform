@@ -123,7 +123,7 @@ const MovieDetails = () => {
           />
         </div>
         <div className="flex-1/4 flex items-center justify-center flex-col gap-4 relative z-10">
-          <div className="w-38 md:w-64 rounded-lg overflow-hidden shadow-lg relative">
+          <div className="w-38 md:w-72 rounded-lg overflow-hidden shadow-lg relative">
             <img
               className="w-full h-full object-cover rounded-lg shadow-lg"
               src={
@@ -138,7 +138,7 @@ const MovieDetails = () => {
             </p>
           </div>
         </div>
-        <div className="flex-3/4 z-10 flex flex-col gap-2">
+        <div className="flex-3/4 z-10 flex flex-col gap-2 px-4">
           <h2 className="px-2 py-2 w-12 bg-primary text-white rounded-md flex items-center justify-center">
             2D
           </h2>
@@ -149,14 +149,19 @@ const MovieDetails = () => {
             <span>{show.vote_average.toFixed(1)}</span>
             <span>({kConverter(show.vote_count)} votes)</span>
           </div>
-          <div className="flex gap-1 ">
-            <p className="max-md:text-sm text-md">{show.genre_names.join(" | ")}</p>
-            <p className="flex items-center gap-1 max-md:text-sm text-md">
-              {" "}
-              &bull; <Clock />
-              <TimeConverter timeInMinutes={show.runtime} />
+          <div className="flex flex-col gap-1 ">
+            <p className="max-md:text-sm text-md">
+              {show.genre_names.join(" | ")}
             </p>
-            <p className="max-md:text-sm text-md"> &bull; {dayjs(show.release_date).format("MMMM D, YYYY")}</p>
+            <div className="flex items-center gap-1 max-md:text-sm text-md">
+              <p className="flex items-center gap-1 max-md:text-sm text-md">
+                <Clock />
+                <TimeConverter timeInMinutes={show.runtime} />
+              </p>
+              <p className="max-md:text-sm text-md">
+                &bull; {dayjs(show.release_date).format("MMMM D, YYYY")}
+              </p>
+            </div>
           </div>
           <p className="max-md:text-sm text-md">
             {window.innerWidth > 768
@@ -183,11 +188,13 @@ const MovieDetails = () => {
               onClick={handleFavouriteToggle}
               disabled={isAddingToFavourites}
             >
-              <Heart className={`${
-                favouriteMovies.map((movie) => movie._id).includes(id)
-                  ? "fill-red-500"
-                  : ""
-              }`} />
+              <Heart
+                className={`${
+                  favouriteMovies.map((movie) => movie._id).includes(id)
+                    ? "fill-red-500"
+                    : ""
+                }`}
+              />
             </button>
           </div>
         </div>
