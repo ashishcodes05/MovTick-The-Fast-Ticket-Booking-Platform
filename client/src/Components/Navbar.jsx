@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className="absolute top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-5 transition-all duration-300">
       <NavLink to="/" className="text-lg flex-1/3 font-semibold">
-        <img src={assets.movTickLogo} alt="" className="w-36 h-auto" />
+        <img src={assets.movTickLogo} alt="" className=" w-24 md:w-36 h-auto" />
       </NavLink>
       <div
         className={`max-md:absolute flex-1/3 max-md:top-0 max-md:left-0 max-md:h-screen max-md:text-2xl max-md:bg-white/10 max-md:backdrop-blur-md z-50 flex flex-col md:flex-row justify-center md:py-2 md:px-8 md:rounded-full items-center gap-8 md:gap-10 text-lg font-semibold text-shadow-white transition-all duration-300 ${
@@ -71,7 +71,7 @@ const Navbar = () => {
         {!user.isSignedIn ? (
           <button
             onClick={openSignIn}
-            className="px-6 py-2 text-lg font-semibold text-shadow-white bg-primary rounded-full hover:bg-white hover:text-black transition"
+            className="px-6 py-2 text-sm md:text-lg font-semibold text-shadow-white bg-primary rounded-full hover:bg-white hover:text-black transition"
           >
             Login
           </button>

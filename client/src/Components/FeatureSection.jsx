@@ -4,10 +4,15 @@ import { useNavigate } from "react-router";
 import { assets, dummyShowsData } from "../assets/assets";
 import MovieCard from "./MovieCard";
 import { useAppContext } from "../Context/AppContext";
+import Loader from "./Loader";
 
 const FeatureSection = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
   const navigate = useNavigate();
   const { shows } = useAppContext();
+  if(shows.length === 0) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="py-10">
@@ -52,7 +57,8 @@ const FeatureSection = () => {
         </div>
       </div>
     </>
-  );
+  ) 
+  
 };
 
 export default FeatureSection;
