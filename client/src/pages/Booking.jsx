@@ -43,16 +43,16 @@ const Booking = () => {
             <img
               src={show.poster_path ? `${imageurl}${show.poster_path}` : 'placeholder.jpg'}
               alt={show.title}
-              className="w-48 object-cover mt-4 mb-4 rounded-lg shadow-sm shadow-black"
+              className="w-36 md:w-48 object-cover mt-4 mb-4 rounded-lg shadow-sm shadow-black"
             />
-            <h1 className="text-2xl font-bold ">
+            <h1 className="text-xl md:text-2xl font-bold ">
               {show.title}
             </h1>
             <p className="text-sm mb-2">
               {show.genre_names.join(" | ")} &bull;{" "}
               <TimeConverter timeInMinutes={show.runtime} />
             </p>
-            <h1 className="text-2xl font-bold text-accent">
+            <h1 className="text-lg md:text-2xl font-bold text-accent">
               Grab Tickets Now !
             </h1>
           </div>

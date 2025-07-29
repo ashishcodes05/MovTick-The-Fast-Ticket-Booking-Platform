@@ -72,8 +72,8 @@ const HeroSection = () => {
                 {slide.logo && (
                   <img className="h-10 mb-4" src={slide.logo} alt="logo" />
                 )}
-                <h1 className="text-5xl md:text-6xl font-bold leading-none" dangerouslySetInnerHTML={{ __html: slide.title }} />
-                <div className="flex flex-wrap items-center gap-4 text-gray-300 mt-4 max-sm:text-lg text-sm md:text-base">
+                <h1 className="text-3xl md:text-6xl font-bold leading-none" dangerouslySetInnerHTML={{ __html: slide.title }} />
+                <div className="flex flex-wrap items-center gap-4 text-gray-300 mt-4 text-sm md:text-base">
                   <span>{slide.genres}</span>
                   <div className="flex items-center gap-1">
                     <CalendarIcon className="w-4 h-4" />
@@ -84,12 +84,14 @@ const HeroSection = () => {
                     {slide.duration}
                   </div>
                 </div>
-                <p className="text-gray-300 mt-4 max-sm:text-lg text-sm md:text-base">
-                  {slide.description.slice(0,400) + "..."}
+                <p className="text-gray-300 mt-4 text-sm md:text-base">
+                  {window.innerWidth > 768
+                    ? slide.description
+                    : slide.description.slice(0, 200) + "..."}
                 </p>
                 <button
                   onClick={() => navigate("/movies")}
-                  className="flex items-center gap-2 text-white mt-4 bg-primary px-4 py-2 rounded-md hover:bg-accent hover:text-primary transition-colors"
+                  className="flex items-center gap-2 text-white mt-4 bg-primary px-4 py-2 max-md:text-sm rounded-md hover:bg-accent hover:text-primary transition-colors"
                 >
                   Explore <ArrowRight />
                 </button>

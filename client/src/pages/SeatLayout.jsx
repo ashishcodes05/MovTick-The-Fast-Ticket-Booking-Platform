@@ -183,16 +183,16 @@ const SeatLayout = () => {
     <div className="min-h-screen px-6 md:px-16 lg:px-36 mt-24">
       <div className="bg-primary/20 border border-accent rounded-lg p-6 mb-8 flex flex-col gap-2">
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-xl font-bold text-white">Booking Details:</h1>
-          <h1 className="text-3xl font-bold text-white">{show.title}</h1>
-          <h1 className="text-accent text-xl">
+          <h1 className="text-md md:text-xl font-bold text-white">Booking Details:</h1>
+          <h1 className="text-xl md:text-3xl font-bold text-white">{show.title}</h1>
+          <h1 className="text-accent text-md md:text-xl">
             {dayjs(date).format("dddd, DD MMMM YYYY")}
           </h1>
-          <h2 className="text-xl text-gray-300">
+          <h2 className="text-md md:text-xl text-gray-300">
             Selected Time:{" "}
             {selectedTime ? dayjs(selectedTime.time).format("hh:mm A") : "None"}
           </h2>
-          <h2 className="text-lg text-gray-400">
+          <h2 className="text-md md:text-lg text-gray-400">
             Selected Seats ({selectedSeats.length} / 5):{" "}
             {selectedSeats.length > 0 ? (
               <span className="text-white">{selectedSeats.join(", ")}</span>
@@ -202,21 +202,21 @@ const SeatLayout = () => {
           </h2>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-4 mt-4">
-          <h1 className="text-white text-lg font-semibold mb-2">
+          <h1 className="text-white text-sm md:text-lg font-semibold mb-2">
             Available Timings
           </h1>
           <div className="flex items-center flex-wrap gap-4">
             {show.dateTime[date].map((item) => (
               <div
                 onClick={() => setSelectedTime(item)}
-                className={`border px-4 py-2 rounded-md cursor-pointer transition  ${
+                className={`border px-2 md:px-4 py-2 rounded-md cursor-pointer transition  ${
                   selectedTime?.time === item.time
                     ? "bg-accent text-primary border-accent"
                     : "border-primary text-white hover:bg-primary/40"
                 }`}
                 key={item.time}
               >
-                <p>{dayjs(item.time).format("hh:mm A")}</p>
+                <p className="text-sm md:text-md">{dayjs(item.time).format("hh:mm A")}</p>
               </div>
             ))}
           </div>
@@ -225,7 +225,7 @@ const SeatLayout = () => {
 
       {/* Seat Layout Section */}
       <div>
-        <h1 className="text-xl font-bold text-white mb-6 text-center">
+        <h1 className="text-md md:text-xl font-bold text-white mb-6 text-center">
           Grab your seats
         </h1>
         <div className="mb-8">
@@ -259,14 +259,14 @@ const SeatLayout = () => {
       <div className="flex items-center justify-center gap-4 mt-4">
         <button
           disabled={isProceeding}
-          className={`bg-primary px-4 py-2 rounded-md text-white mt-4 hover:bg-accent hover:text-primary transition-colors ${
+          className={`bg-primary text-sm md:text-md flex items-center space-x-1 md:space-x-2 px-2 md:px-4 py-2 rounded-md text-white mt-4 hover:bg-accent hover:text-primary transition-colors ${
             isProceeding ? "opacity-50 cursor-not-allowed" : ""
           }`}
           onClick={() => {
             bookTickets();
           }}
         >
-          {isProceeding ? "Processing..." : "Proceed"} <ArrowRight className="inline-block ml-2" />
+          {isProceeding ? "Processing..." : "Proceed"} <ArrowRight className="inline-block" />
         </button>
       </div>
     </div>

@@ -171,13 +171,13 @@ const MovieDetails = () => {
           <div className="flex items-center gap-4 mt-8">
             <button
               onClick={openModal}
-              className="bg-accent text-primary max-md:text-sm py-2 px-4 flex items-center gap-1 rounded-lg hover:bg-accent/80 cursor-pointer"
+              className="bg-accent text-primary max-md:text-sm py-2 px-2 md:px-4 flex items-center gap-1 rounded-lg hover:bg-accent/80 cursor-pointer"
             >
               <Clapperboard /> Watch Trailer
             </button>
             <button
               onClick={() => navigate(`/booking/${id}`)}
-              className="bg-primary text-accent py-2 px-4 max-md:text-sm flex items-center gap-1 rounded-lg hover:bg-primary/80 cursor-pointer"
+              className="bg-primary text-accent py-2 px-2 md:px-4 max-md:text-sm flex items-center gap-1 rounded-lg hover:bg-primary/80 cursor-pointer"
             >
               <LucideTickets /> Book Tickets
             </button>
