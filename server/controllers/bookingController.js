@@ -2,6 +2,7 @@ import Booking from "../models/Booking.js";
 import Show from "../models/Show.js";
 import stripe from "stripe";
 import dayjs from "dayjs";
+import { inngest } from "../inngest/index.js";
 
 //function to check availabilty of selected seats for a movie
 const checkSeatsAvailability = async (showId, selectedSeats) => {
@@ -91,7 +92,7 @@ export const createBooking = async (req, res) => {
         await booking.save(); // Save the booking with the payment link
 
         // Trigger Inngest function to check payment status after 10 minutes
-        await inngest.sendEvent({
+        await inngest.send({
             name: "app/checkpayment",
             data: {
                 bookingId: booking._id.toString(),

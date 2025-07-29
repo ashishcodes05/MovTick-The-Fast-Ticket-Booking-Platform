@@ -96,19 +96,33 @@ const releaseSeatsAndDeleteBooking = inngest.createFunction(
 
         await step.run('check-payment-status', async () => {
             const { bookingId } = event.data;
+            
             const booking = await Booking.findById(bookingId);
+            
+            if (!booking) {
+                return;
+            }
             
             //If payment is not made, release seats and delete booking
             if(!booking.isPaid) {
                 const show = await Show.findById(booking.show);
                 if (show) {
-                    booking.bookedSeats.forEach(seat => {
-                        show.occupiedSeats.delete(seat);
-                    });
-                    show.markModified('occupiedSeats');
+                    // Handle both Map and Object types for backward compatibility
+                    if (show.occupiedSeats instanceof Map) {
+                        booking.bookedSeats.forEach(seat => {
+                            show.occupiedSeats.delete(seat);
+                        });
+                    } else if (show.occupiedSeats && typeof show.occupiedSeats === 'object') {
+                        booking.bookedSeats.forEach(seat => {
+                            delete show.occupiedSeats[seat];
+                        });
+                        show.markModified('occupiedSeats');
+                    }
+                    
                     await show.save();
-                    await Booking.findByIdAndDelete(bookingId);
                 }
+                
+                await Booking.findByIdAndDelete(bookingId);
             }
         })
 
