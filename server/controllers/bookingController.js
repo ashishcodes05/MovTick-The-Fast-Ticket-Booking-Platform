@@ -90,6 +90,14 @@ export const createBooking = async (req, res) => {
         booking.paymentLink = session.url;
         await booking.save(); // Save the booking with the payment link
 
+        // Trigger Inngest function to check payment status after 10 minutes
+        await inngest.sendEvent({
+            name: "app/checkpayment",
+            data: {
+                bookingId: booking._id.toString(),
+            }
+        });
+
         return res.status(201).send({ success: true, url: session.url });
     } catch (error) {
         console.error("Error creating booking:", error);

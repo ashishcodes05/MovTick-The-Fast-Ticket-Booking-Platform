@@ -17,6 +17,7 @@ const SeatLayout = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [occupiedSeats, setOccupiedSeats] = useState([]);
   const [show, setShow] = useState(null);
+  const [isProceeding, setIsProceeding] = useState(false);
   const navigate = useNavigate();
   const seatGroups = [
     ["J", "I"],
@@ -257,12 +258,15 @@ const SeatLayout = () => {
       </h1>
       <div className="flex items-center justify-center gap-4 mt-4">
         <button
-          className="bg-primary px-4 py-2 rounded-md text-white mt-4 hover:bg-accent hover:text-primary transition-colors"
+          disabled={isProceeding}
+          className={`bg-primary px-4 py-2 rounded-md text-white mt-4 hover:bg-accent hover:text-primary transition-colors ${
+            isProceeding ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           onClick={() => {
             bookTickets();
           }}
         >
-          Proceed <ArrowRight className="inline-block ml-2" />
+          {isProceeding ? "Processing..." : "Proceed"} <ArrowRight className="inline-block ml-2" />
         </button>
       </div>
     </div>
