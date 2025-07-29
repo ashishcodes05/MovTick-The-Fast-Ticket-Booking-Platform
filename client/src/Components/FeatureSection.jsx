@@ -17,7 +17,7 @@ const FeatureSection = () => {
     <>
       <div className="py-10">
         <div className="flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-          <h2 className="text-2xl font-bold">Now Showing</h2>
+          <h2 className="text-lg md:text-2xl font-bold">Now Showing</h2>
           <button
             onClick={() => navigate("/movies")}
             className="flex items-center gap-2 text-primary cursor-pointer"
@@ -34,7 +34,7 @@ const FeatureSection = () => {
       </div>
       <div className="py-10">
         <div className="flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-          <h2 className="text-2xl font-bold">Recommended Movies</h2>
+          <h2 className="text-lg md:text-2xl font-bold">Recommended Movies</h2>
           <button
             onClick={() => navigate("/movies")}
             className="flex items-center gap-2 text-primary cursor-pointer"
