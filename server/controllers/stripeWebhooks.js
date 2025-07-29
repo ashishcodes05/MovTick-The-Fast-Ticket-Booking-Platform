@@ -1,5 +1,6 @@
 import stripe from "stripe";
 import Booking from "../models/Booking.js";
+import { inngest } from "../inngest/index.js";
 
 export const stripeWebhookHandler = async (req, res) => {
     const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
@@ -32,6 +33,14 @@ export const stripeWebhookHandler = async (req, res) => {
                         },
                         { new: true }
                     );
+                    
+                    // Trigger email confirmation only after successful payment
+                    await inngest.send({
+                        name: "app/show.booked",
+                        data: {
+                            bookingId: session.metadata.bookingId,
+                        }
+                    });
                 }
                 break;
                 
@@ -55,6 +64,7 @@ export const stripeWebhookHandler = async (req, res) => {
                             },
                             { new: true }
                         );
+                        
                     }
                 }
                 break;
