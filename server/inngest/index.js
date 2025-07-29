@@ -137,32 +137,45 @@ const sendBookingConfirmationEmail = inngest.createFunction(
     { id: "send-booking-confirmation-email" },
     { event: "app/show.booked" },
     async ({ event }) => {
-        const { bookingId } = event.data;
-        const booking = await Booking.findById(bookingId).populate({
-            path: 'show',
-            populate: {
-                path: 'movie',
-                model: 'Movie'
+        try {
+            console.log("Email function triggered for booking:", event.data.bookingId);
+            
+            const { bookingId } = event.data;
+            const booking = await Booking.findById(bookingId).populate({
+                path: 'show',
+                populate: {
+                    path: 'movie',
+                    model: 'Movie'
+                }
+            }).populate('user');
+            
+            if (!booking) {
+                console.error("Booking not found:", bookingId);
+                return;
             }
-        }).populate('user');
-        if (!booking) {
-            console.error("Booking not found:", bookingId);
-            return;
+            
+            console.log("Sending email to:", booking.user.email);
+            
+            await sendEmail(
+                booking.user.email,
+                `Booking Confirmation for ${booking.show.movie.title}`,
+                `
+                    <h1>Booking Confirmation</h1>
+                    <p>Thank you for booking tickets for ${booking.show.movie.title}.</p>
+                    <p>Your booking details are as follows:</p>
+                    <p>Show Date: ${new Date(booking.show.showDateTime).toLocaleDateString("en-US", { timeZone: "Asia/Kolkata" })}</p>
+                    <p>Show Time: ${new Date(booking.show.showDateTime).toLocaleTimeString("en-US", { timeZone: "Asia/Kolkata" })}</p>
+                    <p>Booked Seats: ${booking.bookedSeats.join(', ')}</p>
+                    <p>Total Amount: ₹${booking.amount}</p>
+                    <p>We hope you enjoy the show!</p>
+                `
+            );
+            
+            console.log("Email sent successfully for booking:", bookingId);
+            
+        } catch (error) {
+            console.error("Error in email function:", error);
         }
-        await sendEmail({
-            to: booking.user.email,
-            subject: `Booking Confirmation for ${booking.show.movie.title}`,
-            body: `
-                <h1>Booking Confirmation</h1>
-                <p>Thank you for booking tickets for ${booking.show.movie.title}.</p>
-                <p>Your booking details are as follows:</p>
-                <p>Show Date: ${new Date(booking.show.showDateTime).toLocaleDateString("en-US", { timeZone: "Asia/Kolkata" })}</p>
-                <p>Show Time: ${new Date(booking.show.showDateTime).toLocaleTimeString("en-US", { timeZone: "Asia/Kolkata" })}</p>
-                <p>Booked Seats: ${booking.bookedSeats.join(', ')}</p>
-                <p>Total Amount: ₹${booking.amount}</p>
-                <p>We hope you enjoy the show!</p>
-            `
-        })
     }
 )
 

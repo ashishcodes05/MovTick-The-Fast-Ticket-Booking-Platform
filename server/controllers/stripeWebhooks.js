@@ -25,6 +25,8 @@ export const stripeWebhookHandler = async (req, res) => {
                 const session = event.data.object;
                 
                 if (session.payment_status === 'paid' && session.metadata && session.metadata.bookingId) {
+                    console.log("Processing paid checkout session for booking:", session.metadata.bookingId);
+                    
                     await Booking.findByIdAndUpdate(
                         session.metadata.bookingId, 
                         {
@@ -35,12 +37,14 @@ export const stripeWebhookHandler = async (req, res) => {
                     );
                     
                     // Trigger email confirmation only after successful payment
+                    console.log("Triggering email for booking:", session.metadata.bookingId);
                     await inngest.send({
                         name: "app/show.booked",
                         data: {
                             bookingId: session.metadata.bookingId,
                         }
                     });
+                    console.log("Email trigger sent successfully");
                 }
                 break;
                 
@@ -65,6 +69,13 @@ export const stripeWebhookHandler = async (req, res) => {
                             { new: true }
                         );
                         
+                        // Trigger email confirmation only after successful payment
+                        await inngest.send({
+                            name: "app/show.booked",
+                            data: {
+                                bookingId: session.metadata.bookingId,
+                            }
+                        });
                     }
                 }
                 break;
