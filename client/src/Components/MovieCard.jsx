@@ -18,7 +18,7 @@ const MovieCard = ({ movie }) => {
         </div>
         <div className='p-2'>
           <h3 className='text-sm md:text-lg font-semibold'>{movie.title}</h3>
-          <p className='text-xs text-gray-500'>{movie.genre_names.slice(0, 2).join(" | ")}</p>
+          <p className='text-xs md:text-sm text-gray-500'>{movie.genre_names.slice(0, 2).join(" | ")}</p>
         </div>
     </div>
   )

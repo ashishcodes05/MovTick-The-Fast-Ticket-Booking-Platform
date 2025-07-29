@@ -4,6 +4,7 @@ import MovieCard from "../Components/MovieCard";
 import { useAppContext } from "../Context/AppContext";
 
 const Movies = () => {
+  window.scrollTo(0, 0);
   const { shows, imageurl } = useAppContext();
   return (
     <>
